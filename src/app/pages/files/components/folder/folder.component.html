@@ -1,0 +1,11 @@
+<ng-container *ngIf="info">
+  <div class="item" [routerLink]="info.name">
+    <i class="icon" nz-icon nzType="folder" nzTheme="outline"></i>
+    <br />
+    <span>
+      {{ info.name }}
+    </span>
+  </div>
+</ng-container>
+
+<m-menu #MemuRef></m-menu>

@@ -1,0 +1,27 @@
+<div class="upload-drap" (click)="select()" *ngIf="!files; else statusRef">
+  <div>
+    <i nz-icon nzType="inbox"></i>
+  </div>
+  <div>点击或拖拽开始上传</div>
+</div>
+
+<ng-template #statusRef>
+  <div class="status" *ngIf="files">
+    <nz-list>
+      <nz-list-item *ngFor="let item of files">
+        <div class="status" [class.success]="item.status === 'success'">
+          {{ item.name }}
+        </div>
+        <ng-container [ngSwitch]="item.status">
+          <div class="success" *ngSwitchCase="'success'">上传成功</div>
+          <div class="progress" *ngSwitchCase="'uploading'">
+            <nz-progress
+              [nzPercent]="item.progress"
+              nzStatus="active"
+            ></nz-progress>
+          </div>
+        </ng-container>
+      </nz-list-item>
+    </nz-list>
+  </div>
+</ng-template>

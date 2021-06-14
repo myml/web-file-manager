@@ -1,0 +1,24 @@
+.upload-drap {
+  width: 100%;
+  min-height: 10rem;
+  background-color: #fafafa;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+}
+
+i {
+  font-size: 6rem;
+}
+
+.status {
+}
+.success {
+  color: green;
+}
+
+.progress {
+  width: 10rem;
+}

@@ -1,16 +1,17 @@
 {
-  "name": "hello",
+  "name": "web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --proxy-config proxy.json",
+    "build": "ng build --deploy-url=app/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "CHROME_BIN=/usr/bin/chromium-browser ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.4",
+    "@angular/cdk": "~11.2.13",
     "@angular/common": "~12.0.4",
     "@angular/compiler": "~12.0.4",
     "@angular/core": "~12.0.4",
@@ -18,6 +19,7 @@
     "@angular/platform-browser": "~12.0.4",
     "@angular/platform-browser-dynamic": "~12.0.4",
     "@angular/router": "~12.0.4",
+    "ng-zorro-antd": "^11.4.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

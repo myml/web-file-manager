@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+div {
+  user-select: none;
+}
+.list {
+  display: flex;
+  flex-flow: wrap;
+}
+.item {
+  //   background-color: gray;
+  word-wrap: break-word;
+  width: 5rem;
+  min-height: 5rem;
+  margin: 1rem;
+  text-align: center;
+  .icon {
+    margin: 0 0.5rem;
+    min-width: 4rem;
+    min-height: 4rem;
+    font-size: 4rem;
+  }
+  &:hover {
+    .icon {
+      color: blanchedalmond;
+    }
+  }
+}

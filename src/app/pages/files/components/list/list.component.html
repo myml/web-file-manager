@@ -1,0 +1,26 @@
+<div class="list">
+  <ng-container *ngIf="files$ | async as infos">
+    <ng-container *ngFor="let info of infos">
+      <ng-container *ngIf="info.is_dir; else fileRef">
+        <m-folder
+          [info]="info"
+          draggable="true"
+          (change)="refresh()"
+          (drop)="drop($event, info)"
+          (dragover)="allowDrop($event)"
+          (dragstart)="dragstart($event, info)"
+        ></m-folder>
+      </ng-container>
+      <ng-template #fileRef>
+        <m-file
+          draggable="true"
+          [info]="info"
+          (change)="refresh()"
+          (dragstart)="dragstart($event, info)"
+        ></m-file>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</div>
+
+<m-menu #ListNemuRef> </m-menu>

@@ -1,0 +1,23 @@
+<div class="item" (click)="preview()">
+  <!-- <a [download]="info.name" href="/api/dl?path={{ info.fullname }}"> -->
+  <i
+    class="icon"
+    nz-icon
+    [nzType]="fileIcon(info.name, info.ext)"
+    nzTheme="outline"
+  ></i>
+  <span [contentEditable]="true"> {{ info.name }}</span>
+  <!-- </a> -->
+</div>
+
+<m-menu #MemuRef></m-menu>
+
+<div class="preview" *ngIf="previewURL">
+  <div class="title">
+    <span>预览</span>
+    <button nz-button (click)="previewURL = ''">
+      <i class="icon" nz-icon nzType="close"></i>
+    </button>
+  </div>
+  <iframe [src]="previewURL"></iframe>
+</div>

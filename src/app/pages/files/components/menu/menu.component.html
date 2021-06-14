@@ -1,0 +1,22 @@
+<ul
+  nz-menu
+  class="menu"
+  #MemuRef
+  *ngIf="!hide"
+  [nzSelectable]="false"
+  [style.top.px]="y"
+  [style.left.px]="x"
+  (contextmenu)="disableContextmenu($event)"
+  (mouseleave)="hidden()"
+  (nzClick)="hidden()"
+>
+  <ng-container *ngFor="let item of items">
+    <li
+      nz-menu-item
+      [nzDisabled]="item.disable"
+      (click)="item.click && item.click()"
+    >
+      {{ item.text }}
+    </li>
+  </ng-container>
+</ul>

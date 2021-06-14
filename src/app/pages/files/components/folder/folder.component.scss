@@ -1,0 +1,19 @@
+.item {
+  cursor: pointer;
+  word-wrap: break-word;
+  width: 5rem;
+  min-height: 5rem;
+  margin: 1rem;
+  text-align: center;
+  .icon {
+    margin: 0 0.5rem;
+    min-width: 4rem;
+    min-height: 4rem;
+    font-size: 4rem;
+  }
+  &:hover {
+    .icon {
+      color: blanchedalmond;
+    }
+  }
+}
