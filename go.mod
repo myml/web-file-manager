@@ -1,4 +1,4 @@
-module hello
+module web-file-manager
 
 go 1.16
 

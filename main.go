@@ -2,9 +2,11 @@ package main
 
 import (
 	"embed"
+	"flag"
 	"fmt"
 	"io"
 	"io/fs"
+	"log"
 	"mime/multipart"
 	"net/http"
 	"os"
@@ -18,11 +20,20 @@ import (
 //go:embed dist/web
 var web embed.FS
 
+var rootDir string
+
 func rootFS() afero.Fs {
-	return afero.NewBasePathFs(afero.NewOsFs(), "/home/myml")
+	return afero.NewBasePathFs(afero.NewOsFs(), rootDir)
 }
 
 func main() {
+	pwd, _ := os.Getwd()
+	flag.StringVar(&rootDir, "d", pwd, "root dir")
+	var addr string
+	flag.StringVar(&addr, "l", ":8080", "listen addr")
+	flag.Parse()
+	log.Println("root dir:", rootDir)
+
 	engine := gin.Default()
 	static, err := fs.Sub(web, "dist/web")
 	if err != nil {
@@ -40,7 +51,7 @@ func main() {
 	engine.NoRoute(func(c *gin.Context) {
 		c.FileFromFS("/", http.FS(static))
 	})
-	engine.Run()
+	engine.Run(addr)
 }
 
 func download(c *gin.Context) {
