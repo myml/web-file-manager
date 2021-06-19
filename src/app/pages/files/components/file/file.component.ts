@@ -11,6 +11,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FileInfo, FilesService } from 'src/app/services/files.service';
 import { MenuService } from '../../services/menu.service';
+import { PreviewService } from '../../services/preview.service';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
@@ -22,7 +23,7 @@ export class FileComponent implements OnInit {
   constructor(
     private filesService: FilesService,
     private menuService: MenuService,
-    private safe: DomSanitizer
+    private previewService: PreviewService
   ) {}
   @ViewChild('MemuRef', { static: true })
   MenuEle!: MenuComponent;
@@ -34,6 +35,10 @@ export class FileComponent implements OnInit {
   previewURL!: SafeUrl;
 
   ngOnInit() {}
+
+  preview() {
+    this.previewService.preview(this.info);
+  }
 
   @HostListener('contextmenu', ['$event'])
   itemMenu(ev: MouseEvent) {
@@ -82,12 +87,6 @@ export class FileComponent implements OnInit {
       { text: '属性', disable: true },
     ];
     this.MenuEle.showToEvent(ev);
-  }
-
-  preview() {
-    this.previewURL = this.safe.bypassSecurityTrustResourceUrl(
-      '/api/file?path=' + this.info.fullname
-    );
   }
 
   fileIcon(name: string, ext: string) {

@@ -23,27 +23,3 @@
   position: absolute;
   border: 1px solid #f0f0f0;
 }
-
-.preview {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  left: 10%;
-  top: 10%;
-  .title {
-    width: 100%;
-    height: 2rem;
-    background-color: gainsboro;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    span {
-      font-size: 1.5rem;
-      margin-left: 1rem;
-    }
-  }
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
-}

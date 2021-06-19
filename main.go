@@ -34,11 +34,12 @@ func main() {
 	flag.Parse()
 	log.Println("root dir:", rootDir)
 
-	engine := gin.Default()
 	static, err := fs.Sub(web, "dist/web")
 	if err != nil {
 		panic(err)
 	}
+
+	engine := gin.Default()
 	api := engine.Group("api")
 	api.GET("/dl/:name", download)
 	api.GET("/file", list)

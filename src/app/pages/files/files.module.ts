@@ -19,6 +19,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { RenameComponent } from './components/rename/rename.component';
 import { MenuService } from './services/menu.service';
 import { UploadComponent } from './components/upload/upload.component';
+import { PreviewComponent } from './components/preview/preview.component';
+import { PreviewService } from './services/preview.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { UploadComponent } from './components/upload/upload.component';
     MenuComponent,
     RenameComponent,
     UploadComponent,
+    PreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,6 @@ import { UploadComponent } from './components/upload/upload.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [MenuService],
+  providers: [MenuService, PreviewService],
 })
 export class FilesModule {}

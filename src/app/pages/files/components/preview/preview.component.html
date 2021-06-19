@@ -1,0 +1,4 @@
+<div class="preview" *ngIf="info">
+  <iframe [src]="previewURL" #iframeRef></iframe>
+  <button nz-button (click)="iframeRef.requestFullscreen()">全屏</button>
+</div>

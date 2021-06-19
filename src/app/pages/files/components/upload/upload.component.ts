@@ -29,7 +29,7 @@ export class UploadComponent implements OnInit {
       });
       for (const item of this.files) {
         item.status = 'uploading';
-        await this.filesService.upload(path || '', item.raw, (progress) => {
+        await this.filesService.upload(path || '/', item.raw, (progress) => {
           console.log(progress);
           item.progress = Math.round(progress);
         });
