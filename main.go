@@ -17,7 +17,7 @@ import (
 	"github.com/spf13/afero"
 )
 
-//go:embed dist/web
+//go:embed ui/dist/web
 var web embed.FS
 
 var rootDir string
@@ -34,7 +34,7 @@ func main() {
 	flag.Parse()
 	log.Println("root dir:", rootDir)
 
-	static, err := fs.Sub(web, "dist/web")
+	static, err := fs.Sub(web, "ui/dist/web")
 	if err != nil {
 		panic(err)
 	}
