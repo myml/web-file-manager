@@ -7,8 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { SafeUrl } from '@angular/platform-browser';
 import { FileInfo, FilesService } from 'src/app/services/files.service';
 import { MenuService } from '../../services/menu.service';
 import { PreviewService } from '../../services/preview.service';

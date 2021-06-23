@@ -1,27 +1,33 @@
-# Web
+# web-file-manager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+## 介绍
 
-## Development server
+简单的在线文件管理器，在浏览器管理文件，并计划支持远程下载，支持桌面和移动端。
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 截图
 
-## Code scaffolding
+![截图](./screenshots.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 使用
 
-## Build
+podman run -d -v ~:/data -p 8080:8080 myml/web-file-manager
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 路线图
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [x] 文件查看
+- [x] 文件上传
+- [x] 文件下载
+- [x] 文件夹创建
+- [x] 文件删除
+- [x] 文件复制
+- [ ] 文件选择
+- [ ] 文件剪贴
+- [ ] 文件属性
+- [ ] 远程下载
+- [ ] bt 下载
+- [ ] 图片预览
+- [ ] pdf 预览
+- [ ] word 预览
+- [ ] tar.gz 预览
+- [ ] ssh 文件管理
+- [ ] 国际化支持
