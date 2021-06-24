@@ -1,6 +1,3 @@
-ui:
-	cd ui
-	yarn install
-	yarn build
 build:
-	go build .
+	cd ui && npm install &&npm run build
+	go build
