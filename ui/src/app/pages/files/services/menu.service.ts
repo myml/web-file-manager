@@ -60,10 +60,4 @@ export class MenuService {
       m.afterClose.subscribe(() => resolve(null));
     });
   }
-  setClipboard(path: string) {
-    this.clipboard = path;
-  }
-  getClipboard() {
-    return this.clipboard;
-  }
 }

@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FileInfo, FilesService } from 'src/app/services/files.service';
+import { ClipboardService } from '../../services/clipboard.service';
 import { MenuService } from '../../services/menu.service';
 import { MenuComponent } from '../menu/menu.component';
 
@@ -19,7 +20,8 @@ import { MenuComponent } from '../menu/menu.component';
 export class FolderComponent implements OnInit {
   constructor(
     private filesService: FilesService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private ClipboardService: ClipboardService
   ) {}
 
   @ViewChild('MemuRef', { static: true })
@@ -41,15 +43,17 @@ export class FolderComponent implements OnInit {
       {
         text: '剪贴',
         click: () => {
-          this.menuService.setClipboard(this.info.fullname);
+          this.ClipboardService.setClipboard({
+            type: 'file',
+            active: 'cut',
+            value: this.info.fullname,
+          });
         },
       },
       {
         text: '复制',
         disable: true,
-        click: () => {
-          this.menuService.setClipboard(this.info.fullname);
-        },
+        click: () => {},
       },
       {
         text: '删除',

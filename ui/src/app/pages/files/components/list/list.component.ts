@@ -6,6 +6,7 @@ import { FileInfo, FilesService } from 'src/app/services/files.service';
 import { MenuComponent } from '../menu/menu.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { MenuService } from '../../services/menu.service';
+import { ClipboardService } from '../../services/clipboard.service';
 
 @Component({
   selector: 'm-list',
@@ -17,7 +18,7 @@ export class ListComponent implements OnInit {
     private route: ActivatedRoute,
     private filesService: FilesService,
     private menuService: MenuService,
-    private modalService: NzModalService
+    private clipboardService: ClipboardService
   ) {}
   @ViewChild('ListNemuRef', { static: true })
   ListMenuEle!: MenuComponent;
@@ -69,6 +70,7 @@ export class ListComponent implements OnInit {
     if (!this.ListMenuEle) {
       return;
     }
+    console.log(this.clipboardService.getClipboard());
     this.ListMenuEle.items = [
       { text: '刷新', click: () => this.refresh() },
       {
@@ -82,14 +84,13 @@ export class ListComponent implements OnInit {
       { text: '全选', disable: true },
       {
         text: '粘贴',
-        disable: this.menuService.getClipboard() === '',
+        disable: !this.clipboardService.getClipboard(),
         click: async () => {
+          const clip = this.clipboardService.getClipboard();
           const workdir = await this.workdir$.pipe(first()).toPromise();
-          const name = this.filesService.baseName(
-            this.menuService.getClipboard()
-          );
+          const name = this.filesService.baseName(clip.value);
           await this.filesService
-            .move(this.menuService.getClipboard(), workdir + '/' + name)
+            .move(clip.value, workdir + '/' + name)
             .toPromise();
           this.refresh();
         },

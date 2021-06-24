@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FileInfo, FilesService } from 'src/app/services/files.service';
+import { ClipboardService } from '../../services/clipboard.service';
 import { MenuService } from '../../services/menu.service';
 import { PreviewService } from '../../services/preview.service';
 import { MenuComponent } from '../menu/menu.component';
@@ -22,7 +23,8 @@ export class FileComponent implements OnInit {
   constructor(
     private filesService: FilesService,
     private menuService: MenuService,
-    private previewService: PreviewService
+    private previewService: PreviewService,
+    private ClipboardService: ClipboardService
   ) {}
   @ViewChild('MemuRef', { static: true })
   MenuEle!: MenuComponent;
@@ -59,15 +61,17 @@ export class FileComponent implements OnInit {
       {
         text: '剪贴',
         click: () => {
-          this.menuService.setClipboard(this.info.fullname);
+          this.ClipboardService.setClipboard({
+            type: 'file',
+            active: 'cut',
+            value: this.info.fullname,
+          });
         },
       },
       {
         text: '复制',
         disable: true,
-        click: () => {
-          this.menuService.setClipboard(this.info.fullname);
-        },
+        click: () => {},
       },
       {
         text: '删除',
