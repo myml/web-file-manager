@@ -1,4 +1,4 @@
-module web-file-manager
+module github.com/myml/web-file-manager
 
 go 1.16
 
