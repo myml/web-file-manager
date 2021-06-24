@@ -1,17 +1,9 @@
-FROM node as ui
-WORKDIR /app
-COPY ui/package*.json ./
-RUN npm install
-COPY ui/ .
-RUN npm run build
-
-FROM golang as server
+FROM golang:1.16.4 as server
 WORKDIR /app
 COPY go.* ./
-RUN go env -w GOPROXY=https://goproxy.io,direct
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 COPY . .
-COPY --from=ui /app/dist/ ./ui/dist/
 RUN go build
 
 FROM debian
