@@ -21,12 +21,12 @@ podman run -d -v ~:/data -p 8080:8080 myml/web-file-manager
 - [x] 文件删除
 - [x] 文件复制
 - [ ] 文件选择
-- [ ] 文件剪贴
+- [x] 文件剪贴
 - [ ] 文件属性
 - [ ] 远程下载
 - [ ] bt 下载
-- [ ] 图片预览
-- [ ] pdf 预览
+- [x] 图片预览
+- [x] pdf 预览
 - [ ] word 预览
 - [ ] tar.gz 预览
 - [ ] ssh 文件管理

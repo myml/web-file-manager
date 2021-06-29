@@ -9,4 +9,5 @@ type API struct {
 	handle.UploadF
 	handle.MkdirF
 	handle.DeleteF
+	handle.CopyFileF
 }

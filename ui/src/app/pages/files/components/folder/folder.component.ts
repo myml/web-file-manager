@@ -51,11 +51,6 @@ export class FolderComponent implements OnInit {
         },
       },
       {
-        text: '复制',
-        disable: true,
-        click: () => {},
-      },
-      {
         text: '删除',
         click: async () => {
           await this.filesService.delete(this.info.fullname).toPromise();

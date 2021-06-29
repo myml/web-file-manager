@@ -89,9 +89,16 @@ export class ListComponent implements OnInit {
           const clip = this.clipboardService.getClipboard();
           const workdir = await this.workdir$.pipe(first()).toPromise();
           const name = this.filesService.baseName(clip.value);
-          await this.filesService
-            .move(clip.value, workdir + '/' + name)
-            .toPromise();
+          if (clip.active === 'copy') {
+            await this.filesService
+              .copy(clip.value, workdir + '/' + name)
+              .toPromise();
+          } else if (clip.active === 'cut') {
+            const name = this.filesService.baseName(clip.value);
+            await this.filesService
+              .move(clip.value, workdir + '/' + name)
+              .toPromise();
+          }
           this.refresh();
         },
       },

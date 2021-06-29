@@ -28,6 +28,7 @@ func NewApp(ctx context.Context) (*gin.Engine, error) {
 	uploadF := handle.Upload(aferoFs)
 	mkdirF := handle.Mkdir(aferoFs)
 	deleteF := handle.Delete(aferoFs)
+	copyFileF := handle.CopyFile(aferoFs)
 	api := controller.API{
 		MoveF:     moveF,
 		DownloadF: downloadF,
@@ -35,6 +36,7 @@ func NewApp(ctx context.Context) (*gin.Engine, error) {
 		UploadF:   uploadF,
 		MkdirF:    mkdirF,
 		DeleteF:   deleteF,
+		CopyFileF: copyFileF,
 	}
 	engine := controller.NewEngine(fs, api)
 	return engine, nil

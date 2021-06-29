@@ -18,6 +18,9 @@ export class FilesService {
   delete(path: string) {
     return this.http.delete('api/file', { params: { path } });
   }
+  copy(old_path: string, new_path: string) {
+    return this.http.post('api/file/copy', { old_path, new_path });
+  }
   upload(path: string, file: File, callback?: (progress: number) => void) {
     const formdata = new FormData();
     formdata.append('path', path);

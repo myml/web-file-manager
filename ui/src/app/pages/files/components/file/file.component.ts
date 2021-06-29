@@ -70,8 +70,13 @@ export class FileComponent implements OnInit {
       },
       {
         text: '复制',
-        disable: true,
-        click: () => {},
+        click: async () => {
+          this.ClipboardService.setClipboard({
+            type: 'file',
+            active: 'copy',
+            value: this.info.fullname,
+          });
+        },
       },
       {
         text: '删除',
