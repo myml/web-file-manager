@@ -16,7 +16,7 @@ Use golang
 
 Use docker/podman
 
-`podman run -d -v ${pwd}:/data -p 8080:8080 myml/web-file-manager`
+`podman run -d -v $(pwd):/data -p 8080:8080 myml/web-file-manager`
 
 ## 路线图
 
