@@ -10,7 +10,13 @@
 
 ## 使用
 
-podman run -d -v ~:/data -p 8080:8080 myml/web-file-manager
+Use golang
+
+`go get github.com/myml/web-file-manager`
+
+Use docker/podman
+
+`podman run -d -v ${pwd}:/data -p 8080:8080 myml/web-file-manager`
 
 ## 路线图
 
@@ -31,3 +37,4 @@ podman run -d -v ~:/data -p 8080:8080 myml/web-file-manager
 - [ ] tar.gz 预览
 - [ ] ssh 文件管理
 - [ ] 国际化支持
+- [x] systemd socket activation

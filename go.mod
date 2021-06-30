@@ -3,6 +3,7 @@ module github.com/myml/web-file-manager
 go 1.16
 
 require (
+	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
 	github.com/gin-gonic/gin v1.7.2
 	github.com/google/wire v0.5.0
 	github.com/spf13/afero v1.6.0
