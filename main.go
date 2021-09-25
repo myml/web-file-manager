@@ -15,12 +15,25 @@ import (
 	"github.com/myml/web-file-manager/internal/mfs"
 )
 
-var Set = wire.NewSet(uiFS, rootDir, handle.Set, mfs.Set, controller.Set)
+var controllerSet = wire.NewSet(controller.NewEngine, wire.Struct(new(controller.API), "*"))
+var handleSet = wire.NewSet(
+	handle.Move, handle.Download, handle.List,
+	handle.Upload, handle.Mkdir, handle.Delete,
+	handle.CopyFile,
+)
+var Set = wire.NewSet(uiFS, rootDir, mfs.RootFS, controllerSet, handleSet)
 
 //go:embed ui/dist/web
 var web embed.FS
 var root string
 var addr string
+
+func uiFS() (fs.FS, error) {
+	return fs.Sub(web, "ui/dist/web")
+}
+func rootDir() mfs.RootDIR {
+	return mfs.RootDIR(root)
+}
 
 func main() {
 	pwd, _ := os.Getwd()
@@ -40,12 +53,4 @@ func main() {
 		panic(app.Run(addr))
 	}
 	http.Serve(listeners[0], app)
-}
-
-func uiFS() (fs.FS, error) {
-	return fs.Sub(web, "ui/dist/web")
-}
-
-func rootDir() mfs.RootDIR {
-	return mfs.RootDIR(root)
 }

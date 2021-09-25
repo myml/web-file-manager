@@ -6,7 +6,7 @@
 
 ## 截图
 
-![截图](./screenshots.png)
+![截图](./screenshots/main.png)
 
 ## 使用
 

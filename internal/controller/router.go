@@ -6,11 +6,18 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/wire"
 	"github.com/myml/web-file-manager/internal/handle"
 )
 
-var Set = wire.NewSet(NewEngine, wire.Struct(new(API), "*"))
+type API struct {
+	handle.MoveF
+	handle.DownloadF
+	handle.ListF
+	handle.UploadF
+	handle.MkdirF
+	handle.DeleteF
+	handle.CopyFileF
+}
 
 func NewEngine(uiFS fs.FS, api API) *gin.Engine {
 	engine := gin.Default()
