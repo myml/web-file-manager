@@ -20,13 +20,15 @@ var handleSet = wire.NewSet(
 	handle.Move, handle.Download, handle.List,
 	handle.Upload, handle.Mkdir, handle.Delete,
 	handle.CopyFile,
+	handle.Webdav,
 )
 var Set = wire.NewSet(uiFS, rootDir, mfs.RootFS, controllerSet, handleSet)
 
 //go:embed ui/dist/web
 var web embed.FS
 var root string
-var addr string
+var addr string = ":8080"
+var enableWebdav = true
 
 func uiFS() (fs.FS, error) {
 	return fs.Sub(web, "ui/dist/web")
@@ -36,15 +38,17 @@ func rootDir() mfs.RootDIR {
 }
 
 func main() {
-	pwd, _ := os.Getwd()
-	flag.StringVar(&root, "d", pwd, "root dir")
-	flag.StringVar(&addr, "l", ":8080", "listen addr")
+	workdir, _ := os.Getwd()
+	flag.StringVar(&root, "d", workdir, "root dir")
+	flag.StringVar(&addr, "l", addr, "listen addr")
+	flag.BoolVar(&enableWebdav, "webdav", enableWebdav, "")
 	flag.Parse()
 
 	app, err := NewApp(context.Background())
 	if err != nil {
 		panic(err)
 	}
+
 	listeners, err := activation.Listeners()
 	if err != nil {
 		panic(err)

@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.7.2
 	github.com/google/wire v0.5.0
 	github.com/spf13/afero v1.6.0
+	golang.org/x/net v0.0.0-20211011170408-caeb26a5c8c0
 	golang.org/x/sys v0.0.0-20210423082822-04245dca01da // indirect
 	golang.org/x/text v0.3.6 // indirect
 )

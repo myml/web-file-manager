@@ -17,6 +17,8 @@ type API struct {
 	handle.MkdirF
 	handle.DeleteF
 	handle.CopyFileF
+
+	handle.WebDavH
 }
 
 func NewEngine(uiFS fs.FS, api API) *gin.Engine {
@@ -29,6 +31,10 @@ func NewEngine(uiFS fs.FS, api API) *gin.Engine {
 	r.POST("/file/copy", handle.WarpF(api.CopyFileF))
 	r.POST("/file/mkdir", handle.WarpF(api.MkdirF))
 	r.DELETE("/file", handle.WarpF(api.DeleteF))
+
+	for _, method := range strings.Split("OPTIONS, LOCK, GET, HEAD, POST, DELETE, PROPPATCH, COPY, MOVE, UNLOCK, PROPFIND, PUT", ", ") {
+		engine.Handle(method, "/dav/*path", gin.HandlerFunc(api.WebDavH))
+	}
 
 	engine.StaticFS("app", http.FS(uiFS))
 	engine.NoRoute(func(c *gin.Context) {

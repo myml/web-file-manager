@@ -18,6 +18,14 @@ Use docker/podman
 
 `podman run -d -v $(pwd):/data -p 8080:8080 myml/web-file-manager`
 
+WebUI地址
+
+http://localhost:8080
+
+WebDAV地址
+
+http://localhost:8080/dav
+
 ## 路线图
 
 - [x] 文件查看
@@ -38,3 +46,4 @@ Use docker/podman
 - [ ] ssh 文件管理
 - [ ] 国际化支持
 - [x] systemd socket activation
+- [x] WebDAV
