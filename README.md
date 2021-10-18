@@ -8,23 +8,30 @@
 
 ![截图](./screenshots/main.png)
 
+## 安装
+
+### Use golang
+
+`go install github.com/myml/web-file-manager`
+
+### Use docker/podman
+
+`podman run -d -v $(pwd):/data -p 8080:8080 ghcr.io/myml/web-file-manager:main`
+
 ## 使用
 
-Use golang
+### 设置密码
+通过环境变量`USER`和`PASSWORD`设置用户名和密码，默认无验证。
 
-`go get github.com/myml/web-file-manager`
-
-Use docker/podman
-
-`podman run -d -v $(pwd):/data -p 8080:8080 myml/web-file-manager`
-
-WebUI地址
+### WebUI地址
 
 http://localhost:8080
 
-WebDAV地址
+### WebDAV地址
 
 http://localhost:8080/dav
+
+
 
 ## 路线图
 

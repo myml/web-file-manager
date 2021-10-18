@@ -3,6 +3,7 @@ package controller
 import (
 	"io/fs"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -23,6 +24,9 @@ type API struct {
 
 func NewEngine(uiFS fs.FS, api API) *gin.Engine {
 	engine := gin.Default()
+	if pass := os.Getenv("PASSWORD"); len(pass) > 0 {
+		engine.Use(gin.BasicAuth(gin.Accounts{os.Getenv("USER"): pass}))
+	}
 	r := engine.Group("api")
 	r.GET("/dl/:name", handle.WarpF(api.DownloadF))
 	r.GET("/file", handle.WarpF(api.ListF))
